@@ -131,8 +131,8 @@ tourSchema.pre(/^find/, function (next) {
 // });
 
 tourSchema.post(/^find/, function (docs, next) {
+  // eslint-disable-next-line prettier/prettier, no-console
   console.log(
-    // eslint-disable-next-line prettier/prettier
     `Query took ${Date.now() - this.start} milliseconds!`
   );
   // console.log(docs);
@@ -145,7 +145,7 @@ tourSchema.pre("aggregate", function (next) {
   //unshift adds the query at the beggining
   //shift adds the query at the end
   this.pipeline().unshift({ $match: { secreteTour: { $ne: true } } });
-  console.log(this.pipeline());
+  // console.log(this.pipeline());
   next();
 });
 

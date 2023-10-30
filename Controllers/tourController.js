@@ -159,7 +159,10 @@ exports.getTour = async (req, res) => {
       },
     });
   } catch (e) {
-    console.log(e);
+    res.status(404).json({
+      status: "error",
+      message: e.message,
+    });
   }
 };
 
@@ -178,7 +181,10 @@ exports.updateTour = async (req, res) => {
       },
     });
   } catch (e) {
-    console.log(e);
+    res.status(404).json({
+      status: "error",
+      message: e.message,
+    });
   }
 };
 
@@ -192,7 +198,10 @@ exports.deleteTour = async (req, res) => {
       data: null,
     });
   } catch (e) {
-    console.log(e);
+    res.status(404).json({
+      status: "error",
+      message: e.message,
+    });
   }
 };
 
@@ -237,7 +246,6 @@ exports.getTourStats = async (req, res) => {
 exports.getMonthlyPlan = async (req, res) => {
   try {
     const year = req.params.year * 1;
-    console.log(year);
     const plan = await Tour.aggregate([
       {
         $unwind: "$startDates",
