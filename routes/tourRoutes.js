@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require('express');
 
 const {
   getAllTours,
@@ -11,7 +11,7 @@ const {
   getMonthlyPlan,
   //checkTourId,
   //checkBody,
-} = require("../Controllers/tourController");
+} = require('../Controllers/tourController');
 
 const router = express.Router();
 
@@ -19,10 +19,10 @@ const router = express.Router();
 
 // router.route('/').get(getAllTours).post(checkBody, createTour); //chaining middlewares
 
-router.route("/").get(getAllTours).post(createTour);
-router.route("/famous-tours").get(getFamousTours, getAllTours);
-router.route("/tour-stats").get(getTourStats);
-router.route("/monthly-plan/:year").get(getMonthlyPlan);
-router.route("/:tourId").get(getTour).patch(updateTour).delete(deleteTour);
+router.route('/').get(getAllTours).post(createTour);
+router.route('/famous-tours').get(getFamousTours, getAllTours);
+router.route('/tour-stats').get(getTourStats);
+router.route('/monthly-plan/:year').get(getMonthlyPlan);
+router.route('/:tourId').get(getTour).patch(updateTour).delete(deleteTour);
 
 module.exports = router;
