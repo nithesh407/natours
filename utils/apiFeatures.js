@@ -38,6 +38,7 @@ class APIFeatures {
     //3) Field Limit
     if (this.queryString.field) {
       const field = this.queryString.field.split(",").join(" ");
+      // console.log(field);
       this.query = this.query.select(field); //includes the respective field
     } else {
       this.query = this.query.select("-__v"); //excludes the '__v' field
