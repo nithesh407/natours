@@ -18,6 +18,10 @@ const handleValidationErrorDB = (err) => {
   return new AppError(message, 400);
 };
 
+const handleJsonWebTokenError = () => new AppError('Invalid Token please login to get access', 401);
+
+const handleTokenExpiredError = () => new AppError('Token expired please login to get access',401);
+
 const sendErrorDev = (err, res) => {
   res.status(err.statusCode).json({
     status: 'error',
@@ -31,7 +35,7 @@ const sendErrorProd = (err, res) => {
   if (err.isOperational) {
     res.status(err.statusCode).json({
       status: 'error',
-      message: err.message,
+      message: err.msg,
     });
   }
   // programming error : Don't send the error details to the client
@@ -60,6 +64,8 @@ module.exports = (err, req, res, next) => {
     if (error.code === 11000) error = handleDuplicateFieldsDB(error);
     if (error.name === 'ValidationError')
       error = handleValidationErrorDB(error);
+    if (error.name === 'JsonWebTokenError') error = handleJsonWebTokenError();
+    if (error.name === 'TokenExpiredError') error = handleTokenExpiredError();
     sendErrorProd(error, res);
   }
 };
