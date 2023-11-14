@@ -1,10 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
+const catchAsync = require('./catchAsync');
 
 dotenv.config({ path: '../config.env' });
 
-const sendMail = async (options) => {
+const sendMail = catchAsync(async (options) => {
   //1) CREATE A TRANSPORTER
   const transporter = nodemailer.createTransport({
     service: process.env.EMAIL_SERVICE,
@@ -27,5 +28,5 @@ const sendMail = async (options) => {
   //3) Actually send the mail
 
   await transporter.sendMail(mailOptions);
-};
+});
 module.exports = sendMail;
