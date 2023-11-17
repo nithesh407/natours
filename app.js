@@ -28,7 +28,7 @@ app.set('views',path.join(__dirname,'views'))
 //1) GLOBAL MIDDLEWARES
 app.use(cors())
 
-app.options('*',cors());
+// app.options('*',cors());
 
 //setting secure http headers
 app.use(helmet({ contentSecurityPolicy: false }))
