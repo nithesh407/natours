@@ -10,6 +10,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
+const compression = require('compression')
 
 const userRouter = require('./routes/userRoutes');
 const tourRouter = require('./routes/tourRoutes');
@@ -67,6 +68,8 @@ app.use(hpp({
     'price'
   ]
 }));
+
+app.use(compression());
 
 //3)Routes
 app.use('/',viewRouter);
