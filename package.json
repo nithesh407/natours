@@ -4,7 +4,6 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node server.js",
     "dev": "nodemon server.js",
     "lint": "eslint .",
     "debug --dev": "nodemon --inspect server.js",
