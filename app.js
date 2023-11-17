@@ -21,11 +21,15 @@ const AppError = require('./utils/appError');
 const globalErrorHandler = require('./Controllers/errorController');
 
 const app = express();
-app.use(cors())
+
 //setting the pug template view engine to express
 app.set('view engine','pug');
 app.set('views',path.join(__dirname,'views'))
 //1) GLOBAL MIDDLEWARES
+app.use(cors())
+
+app.options('*',cors());
+
 //setting secure http headers
 app.use(helmet({ contentSecurityPolicy: false }))
 
